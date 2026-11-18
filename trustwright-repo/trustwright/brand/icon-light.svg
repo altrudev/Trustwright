@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Trustwright">
+<title>Trustwright</title>
+<rect width="128" height="128" rx="28" fill="#FFFFFF"/>
+<g transform="translate(-4 3)">
+  <path d="M30 34H82" stroke="#7B4FD6" stroke-width="8" stroke-linecap="round"/>
+  <path d="M56 34V54" stroke="#7B4FD6" stroke-width="8" stroke-linecap="round"/>
+  <path d="M24 58L40 94L56 58L72 94L104 30" fill="none" stroke="#0E9C82" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="40" cy="94" r="7" fill="#FFFFFF" stroke="#0E9C82" stroke-width="4.5"/>
+  <circle cx="72" cy="94" r="7" fill="#FFFFFF" stroke="#0E9C82" stroke-width="4.5"/>
+  <circle cx="104" cy="30" r="9" fill="#0E9C82"/>
+</g>
+</svg>
