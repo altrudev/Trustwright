@@ -1,0 +1,13 @@
+# build output
+/bin/
+/dist/
+*.test
+*.out
+
+# local runs and secrets
+/runs/
+/worktrees/
+*.key
+*.pem
+.env
+.env.*
