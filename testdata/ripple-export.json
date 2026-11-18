@@ -1,0 +1,18 @@
+{
+  "engine": "ripple/0.1",
+  "source": { "type": "sample", "name": "Example: a small web app", "url": null, "commit": null },
+  "nodes": [
+    { "id": "src/app.js", "kind": "file", "type": null, "group": "src", "health": { "level": "ok", "why": "Linked both ways" } },
+    { "id": "src/api.js", "kind": "file", "type": null, "group": "src" },
+    { "id": "pkg:express", "kind": "package", "type": "package", "group": "outside" }
+  ],
+  "edges": [
+    { "from": "src/app.js", "to": "src/api.js", "kind": "imports" },
+    { "from": "src/api.js", "to": "pkg:express", "kind": "uses" },
+    { "from": "src/app.js", "to": "pkg:express", "kind": "suggested", "why": "Shared words" }
+  ],
+  "levers": [ { "id": "remove:pkg:express", "label": "Remove express", "type": "switch", "target": "pkg:express" } ],
+  "effects": [ { "when": "lever.on", "rule": "reach", "from": "lever.target", "direction": "upstream", "mark": "breaks" } ],
+  "snapshot": { "removed": [], "breaks": [] },
+  "notes": { "missing": [], "runtimeLoaded": [], "unusedDependencies": [] }
+}
