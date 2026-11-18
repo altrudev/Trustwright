@@ -19,7 +19,7 @@ You preview the change, choose it, and it arrives as a pull request with a signe
 
 ## Status
 
-**In design.** No code yet. Start with [docs/HANDOVER.md](docs/HANDOVER.md).
+**M1 in progress.** Graph and rule formats are in `model/` and `rules/` (`go test ./...`); see [docs/FORMAT.md](docs/FORMAT.md). Start with [docs/HANDOVER.md](docs/HANDOVER.md).
 
 - Product page: https://altru.dev/apps/trustwright
 - Design doc: https://claude.ai/artifact/NFRjP27EbnXxMhUP4B8ok2

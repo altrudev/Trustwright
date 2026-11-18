@@ -1,6 +1,6 @@
 # Trustwright handover
 
-Last updated: 18 Nov 2026 · Stage: **design done, no code yet** · Next: **M1 (model and map)**
+Last updated: 18 Nov 2026 · Stage: **M1 started: graph and rule formats written** · Next: **M1 step 2 (Go readers)**
 
 Read this first in a new chat. It says what Trustwright is, what has been decided, where everything lives, the rules to follow, and what to build next.
 
@@ -24,7 +24,7 @@ A standalone tool that maps a federated or agent-trust system, finds broken trus
 | Product page (featured, "In development") | https://altru.dev/apps/trustwright |
 | Brand files | `brand/` in this repo, rules in `brand/TRADEMARK.md` |
 
-A new chat can read the design doc with the Claude Docs tools; it is not copied into this repo.
+The design doc is not copied into this repo. A chat that can't open it (it must be shared with that chat) can work from this handover and `docs/FORMAT.md`; the formats here were written that way on 18 Nov, so check them against the doc's spec when it is next open.
 
 ## 3. Decisions made (18 Nov 2026)
 
@@ -126,7 +126,7 @@ Freed 39 GB (disk went from 72 GB to 111 GB free).
 
 ## 11. Start here (next steps)
 
-1. Write the rule format and the graph schema as Go types, extending Ripple's engine model JSON (`nodes`, `edges`, `levers`, `effects`).
+1. ~~Write the rule format and the graph schema as Go types~~ **Done 18 Nov.** `model/` (graph, loads Ripple's export unchanged) and `rules/` (five check operations: `each-has-edge`, `no-edge`, `each-attr`, `all-paths-via`, `same-set`), with tests (`go test ./...`). Format described in `docs/FORMAT.md`; examples in `testdata/`. The checker that evaluates the operations is M2.
 2. Port the Ripple readers needed for the kernel (C, Rust, Python, Markdown) into a Go reader package, or run Ripple's CORE through a small adapter first.
 3. Load the kernel, draw the map, and import the three spec docs as draft rules (M1).
 4. Draft the contributor licence agreement text before accepting any outside code.

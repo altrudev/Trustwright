@@ -1,0 +1,20 @@
+{
+  "engine": "trustwright/0.1",
+  "source": { "type": "local", "name": "example: two workers and a coordinator", "url": null, "commit": null },
+  "nodes": [
+    { "id": "worker:c", "kind": "worker", "type": "c", "label": "C worker", "src": [ { "path": "workers/worker.c", "line": 1, "end": 120 } ], "attrs": { "lang": "c" } },
+    { "id": "worker:py", "kind": "worker", "type": "python", "label": "Python worker", "src": [ { "path": "workers/worker.py" } ], "attrs": { "lang": "python" } },
+    { "id": "coordinator", "kind": "coordinator", "label": "Coordinator", "src": [ { "path": "coordinator_v2.py", "line": 40 } ] },
+    { "id": "frame:step", "kind": "frame", "label": "Step frame", "src": [ { "path": "wire/SPEC-V2.md", "line": 12, "end": 30 } ] },
+    { "id": "check:crc32", "kind": "check", "type": "crc32", "label": "CRC32 compare", "src": [ { "path": "wire/decode_v2.c", "line": 88 } ], "attrs": { "purpose": "integrity" } },
+    { "id": "spec:v2-decoders", "kind": "spec", "label": "SPEC-V2: decoders", "src": [ { "path": "wire/SPEC-V2.md", "line": 5, "quote": "V2 is Python-only" } ], "attrs": { "lang": "python" } }
+  ],
+  "edges": [
+    { "from": "coordinator", "to": "frame:step", "kind": "sends" },
+    { "from": "worker:c", "to": "frame:step", "kind": "accepts" },
+    { "from": "worker:py", "to": "frame:step", "kind": "accepts" },
+    { "from": "worker:c", "to": "check:crc32", "kind": "performs", "src": [ { "path": "workers/worker.c", "line": 64 } ] },
+    { "from": "check:crc32", "to": "frame:step", "kind": "checks" },
+    { "from": "spec:v2-decoders", "to": "frame:step", "kind": "documents" }
+  ]
+}

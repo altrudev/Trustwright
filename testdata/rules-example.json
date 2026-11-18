@@ -1,0 +1,82 @@
+{
+  "format": "trustwright.rules/1",
+  "rules": [
+    {
+      "id": "frames.authenticated",
+      "title": "Workers authenticate frames",
+      "claim": "Every worker that accepts frames checks who sent them before using them.",
+      "status": "draft",
+      "severity": "high",
+      "family": "A",
+      "src": [ { "path": "experiments/binary-process/README.md" } ],
+      "check": {
+        "op": "each-has-edge",
+        "subject": { "kind": "worker" },
+        "edge": "performs",
+        "object": { "kind": "check", "attrs": { "purpose": "authenticate" } }
+      }
+    },
+    {
+      "id": "frames.fresh",
+      "title": "Frames cannot be replayed from an earlier run",
+      "status": "draft",
+      "severity": "high",
+      "family": "A",
+      "src": [ { "path": "coordinator_v2.py" } ],
+      "check": {
+        "op": "each-has-edge",
+        "subject": { "kind": "worker" },
+        "edge": "performs",
+        "object": { "kind": "check", "attrs": { "purpose": "freshness" } }
+      }
+    },
+    {
+      "id": "wire.v2-decoders-match-spec",
+      "title": "V2 decoders match the spec",
+      "claim": "The languages with a V2 decoder are the ones the spec lists.",
+      "status": "draft",
+      "severity": "medium",
+      "family": "G",
+      "src": [ { "path": "wire/SPEC-V2.md" } ],
+      "check": {
+        "op": "same-set",
+        "subject": { "id": "spec:v2-decoders" },
+        "object": { "kind": "worker" },
+        "key": "lang"
+      }
+    },
+    {
+      "id": "wire.v1-rejects-v2-tested",
+      "title": "\"v1 never accepts V2 frames\" has a test",
+      "status": "draft",
+      "severity": "medium",
+      "family": "G",
+      "check": {
+        "op": "each-has-edge",
+        "subject": { "kind": "spec", "id": "spec:v1-rejects-v2" },
+        "edge": "tests",
+        "direction": "in",
+        "object": { "kind": "test" }
+      }
+    },
+    {
+      "id": "frames.checked-before-worker",
+      "title": "Every frame reaches a worker through a check",
+      "status": "draft",
+      "severity": "high",
+      "check": {
+        "op": "all-paths-via",
+        "subject": { "kind": "coordinator" },
+        "object": { "kind": "worker" },
+        "via": { "kind": "check" }
+      }
+    },
+    {
+      "id": "workers.labelled",
+      "title": "Every worker says its language",
+      "status": "active",
+      "severity": "low",
+      "check": { "op": "each-attr", "subject": { "kind": "worker" }, "want": { "lang": "*" } }
+    }
+  ]
+}
